@@ -1,0 +1,416 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+#root:before {
+  content: "";
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+  background: url("./assets/background2.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.container {
+  background-color: white;
+
+  top: 0;
+  overflow: hidden;
+  min-height: 100vh;
+  box-shadow: 2px 2px 4px #000000;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.highlighted-row {
+  background-color: lightskyblue;
+  border: solid black 2px inside;
+}
+
+.classifieds-table {
+  height: 40vh;
+  overflow-x: scroll;
+  overflow-y: auto;
+  text-align: justify;
+}
+
+.thead-fixed {
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: -ms-sticky;
+  position: -o-sticky;
+  position: sticky;
+  top: 0;
+}
+
+.credits {
+  font-size: xx-small;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-flow: wrap;
+}
+
+.header-splitter {
+  float: left;
+}
+
+.header-left {
+  width: 30%;
+}
+
+.header-right {
+  width: 70%;
+}
+
+.header-filter {
+  width: 30%;
+  min-width: 120px;
+  float: right;
+  padding-left: 5px;
+}
+
+.header-sort {
+  width: 30%;
+  min-width: 120px;
+  margin-left: 15%;
+  float: right;
+}
+
+td {
+  text-align: left;
+  border-inline: rgb(222, 226, 230) 1px dashed;
+}
+
+.center {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.profile-img {
+  margin-right: 5px;
+  float: left;
+  background: 50% 50% no-repeat; /* 50% 50% centers image in div */
+  background-size: auto 100%; /* Interchange this value depending on prefering width vs. height */
+  width: 25px;
+  height: 25px;
+}
+
+.profile-img-lg {
+  margin-right: 5px;
+  margin-top: -3px;
+  float: left;
+  background: 50% 50% no-repeat; /* 50% 50% centers image in div */
+  background-size: auto 100%; /* Interchange this value depending on prefering width vs. height */
+  width: 30px;
+  height: 30px;
+}
+
+.profile-page-svg {
+  margin-right: 15px;
+  top: 10px;
+  float: left;
+  background: 50% 50% no-repeat; /* 50% 50% centers image in div */
+  background-size: auto 100%; /* Interchange this value depending on prefering width vs. height */
+  width: 48px;
+  height: 48px;
+  vertical-align: baseline;
+
+  display: inline-flex;
+}
+
+.btn-royal {
+  background-color: royalblue;
+  color: white;
+}
+
+.bg-navy {
+  background-color: #242185;
+}
+
+.bg-gray {
+  background-color: rgb(165, 173, 182);
+}
+
+.bg-green {
+  background-color: seagreen;
+}
+
+.thead-navy {
+  background: #242185;
+  color: white;
+}
+
+.full-height {
+  height: 90vh;
+}
+
+.photo-creds {
+  position: relative;
+  left: 0%;
+  top: 97%;
+  width: 100%;
+  color: white;
+  text-align: center;
+  font-size: 0.8em;
+}
+
+.text-black {
+  color: black;
+}
+
+.text-black a {
+  color: white;
+}
+
+.svg-container {
+  margin-right: 10px;
+  padding: 10px;
+
+  display: inline;
+}
+
+.button-container {
+  /*margin-bottom: 2px;*/
+  margin-right: 9px;
+}
+
+.btn-social {
+  border-radius: 4px;
+  width: 85%;
+  height: 50px;
+  margin: 5px;
+  box-shadow: 1px 1px 2px #000000;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+.svg-icon {
+  vertical-align: baseline;
+  margin-top: -0.3em;
+  margin-bottom: -0.2em;
+  display: inline-flex;
+}
+
+.btn-google {
+  background: white;
+  color: black;
+  border: 1px solid black;
+  display: flex;
+}
+
+.btn-facebook {
+  background: #3b5998;
+  border: 1px solid black;
+  color: white;
+}
+
+.of-scroll {
+  overflow: scroll;
+}
+
+.datepicker {
+  border: 1px solid rgb(165, 173, 182);
+  border-radius: 5px;
+}
+
+.baddatepicker {
+  border: 1px solid rgb(253, 141, 141);
+  border-radius: 5px;
+}
+
+.date-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-flow: wrap;
+  justify-content: left;
+}
+
+.date-box {
+  padding-right: 10px;
+}
+
+.locate {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 5px;
+  background: none;
+  border: 10px solid black;
+  z-index: 10;
+}
+
+@media (pointer: fine) {
+  /* Rules for devices with mouse here */
+  .btn-google:hover {
+    background: rgb(235, 235, 235);
+  }
+
+  .btn-facebook:hover {
+    background: #6785c5;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  table {
+    border: 0;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  table tr {
+    border: 3px solid #242185;
+    display: block;
+    margin: 3px;
+  }
+
+  table td {
+    display: block;
+    font-size: 0.8em;
+    text-align: right;
+  }
+
+  table td::before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  /*
+	Label the data
+	*/
+  td:nth-of-type(1):before {
+    content: "Sport:";
+  }
+  td:nth-of-type(2):before {
+    content: "Username:";
+  }
+  td:nth-of-type(3):before {
+    content: "Description:";
+  }
+  td:nth-of-type(4):before {
+    content: "Start Time:";
+  }
+  td:nth-of-type(5):before {
+    content: "End Time:";
+  }
+  td:nth-of-type(6):before {
+    content: "Location:";
+  }
+  td:nth-of-type(7):before {
+    content: "Actions:";
+  }
+
+  table td:last-child {
+    border-bottom: 0;
+  }
+
+  #root:before {
+    background-image: none;
+  }
+
+  .btn-social {
+    width: 120%;
+  }
+
+  .container {
+    color: black;
+    box-shadow: none;
+  }
+
+  .header-splitter select {
+    font-size: small;
+    vertical-align: center;
+  }
+
+  .header-left {
+    width: 20%;
+  }
+
+  .header-right {
+    width: 80%;
+  }
+
+  .header-filter {
+    width: 40%;
+    min-width: 0px;
+  }
+
+  .header-sort {
+    width: 40%;
+    min-width: 0%;
+  }
+
+  .rsp-h3 {
+    font-size: medium;
+    margin-top: 5px;
+  }
+}
