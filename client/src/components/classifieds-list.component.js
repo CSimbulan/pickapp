@@ -25,9 +25,12 @@ export default class ClassifiedsList extends Component {
   componentDidMount() {
 
     axios
-      .get(
-        `/classifieds/query?filter=All&sort=sooner`
-      )
+    .get(`/classifieds/query`, {
+      params: {
+        sport: "All",
+        sort: "sooner",
+      },
+    })
       .then((response) => {
         this.setState({ classifieds: response.data });
       })
