@@ -176,7 +176,8 @@ export default class ClassifiedsList extends Component {
     return (
       <div>
         <div style={{ width: "100%" }}>
-
+          {console.log("Aaa")}
+          {console.log(process.env.TEST)}
           <LargeMap
             google={this.props.google}
             center={this.state.mapPosition}
