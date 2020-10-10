@@ -20,7 +20,6 @@ router.route("/query").get((req, res) => {
     filter = { userid: req.query.userid };
   }
   var sort = {};
-  console.log(process.env.TEST)
   switch (req.query.sort) {
     case "sooner":
       sort = { startdate: 1 };

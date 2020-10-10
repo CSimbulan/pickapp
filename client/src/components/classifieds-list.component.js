@@ -155,7 +155,6 @@ export default class ClassifiedsList extends Component {
 
   onFilterChange = (e) => {
     const filter = e.target.value;
-    console.log(e.target.value)
     const sort = this.state.sort;
     axios
       .get(`/classifieds/query`, {
@@ -177,7 +176,7 @@ export default class ClassifiedsList extends Component {
       <div>
         <div style={{ width: "100%" }}>
           {console.log("Aaa")}
-          {console.log(process.env.TEST)}
+          {console.log(process.env.REACT_APP_TEST)}
           <LargeMap
             google={this.props.google}
             center={this.state.mapPosition}
