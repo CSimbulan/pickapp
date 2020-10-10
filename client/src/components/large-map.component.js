@@ -102,7 +102,7 @@ class LargeMap extends React.Component {
       map = (
         <div>
           <this.AsyncMap
-            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_KEY}&libraries=places`}
+            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_KEY}&libraries=places`}
             loadingElement={<div style={{ height: `100%` }} />}
             containerElement={<div style={{ height: this.props.height }} />}
             mapElement={<div style={{ height: `100%` }} />}
