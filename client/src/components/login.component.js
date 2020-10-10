@@ -19,7 +19,7 @@ const Login = ({ history }) => {
 
   const sendGoogleToken = (tokenId) => {
     axios
-      .post(`${process.env.REACT_APP_API_URL}/googlelogin`, {
+      .post(`/api/googlelogin`, {
         idToken: tokenId,
       })
       .then((res) => {
@@ -42,7 +42,7 @@ const Login = ({ history }) => {
 
   const sendFacebookToken = (userID, accessToken) => {
     axios
-      .post(`${process.env.REACT_APP_API_URL}/facebooklogin`, {
+      .post(`/api/facebooklogin`, {
         userID,
         accessToken,
       })
@@ -69,7 +69,7 @@ const Login = ({ history }) => {
     if (email && password1) {
       setFormData({ ...formData, textChange: "Submitting" });
       axios
-        .post(`${process.env.REACT_APP_API_URL}/login`, {
+        .post(`/api/login`, {
           email,
           password: password1,
         })

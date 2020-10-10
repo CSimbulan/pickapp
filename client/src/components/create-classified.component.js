@@ -34,7 +34,7 @@ export default class CreateClassified extends Component {
 
   componentDidMount() {
     axios
-      .get(`${process.env.REACT_APP_API_URL}users/query`, {
+      .get(`/api/users/query`, {
         params: {
           email: this.getEmail(),
         },
@@ -112,7 +112,7 @@ export default class CreateClassified extends Component {
       };
 
       axios
-        .post(`${process.env.REACT_APP_SERVER_URL}/classifieds/add`, classified)
+        .post(`/classifieds/add`, classified)
         .then((res) => console.log(res.data));
 
       window.location = "/";

@@ -36,7 +36,7 @@ export default class EditClassified extends Component {
 
   componentDidMount() {
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/classifieds/` + this.props.match.params.id)
+      .get(`/classifieds/` + this.props.match.params.id)
       .then((response) => {
         this.setState({
           username: response.data.username,
@@ -92,7 +92,7 @@ export default class EditClassified extends Component {
 
       axios
         .post(
-          `${process.env.REACT_APP_SERVER_URL}/classifieds/update/` +
+          `/classifieds/update/` +
             this.props.match.params.id,
           classified
         )

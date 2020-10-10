@@ -19,7 +19,7 @@ export default class Profile extends Component {
 
   componentDidMount() {
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/classifieds/query`, {
+      .get(`/classifieds/query`, {
         params: {
           userid: this.getUserId(),
         },
@@ -50,7 +50,7 @@ export default class Profile extends Component {
 
   deleteClassified = (id) => {
     axios
-      .delete(`${process.env.REACT_APP_SERVER_URL}/classifieds/` + id)
+      .delete(`/classifieds/` + id)
       .then((response) => {
         console.log(response.data);
       });

@@ -26,7 +26,7 @@ export default class ClassifiedsList extends Component {
 
     axios
       .get(
-        `${process.env.REACT_APP_SERVER_URL}/classifieds/query?filter=All&sort=sooner`
+        `/classifieds/query?filter=All&sort=sooner`
       )
       .then((response) => {
         this.setState({ classifieds: response.data });
@@ -38,7 +38,7 @@ export default class ClassifiedsList extends Component {
 
   deleteClassified = (id) => {
     axios
-      .delete(`${process.env.REACT_APP_SERVER_URL}/classifieds/` + id)
+      .delete(`/classifieds/` + id)
       .then((response) => {
         console.log(response.data);
       });
@@ -155,7 +155,7 @@ export default class ClassifiedsList extends Component {
     console.log(e.target.value)
     const sort = this.state.sort;
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/classifieds/query`, {
+      .get(`/classifieds/query`, {
         params: {
           sport: filter,
           sort: sort,
