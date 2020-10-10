@@ -1,0 +1,8 @@
+- add comments
+- add more Sport options for postings
+- fix verifyToken unhandledPromisRejection error
+- add find my location and location search bar on home page
+- find solution for bug where new post does not get posted (usually only happens once)
+- add ability to change username and password from profile page
+- add ability to get directions
+- add messaging between users
