@@ -53,10 +53,6 @@ export default class Classified extends Component {
     return formatted_date;
   };
 
-  getHref = () => {
-    return (this.props.isProfile ? "/profile" : "/#");
-  }
-
   getActions = () => {
     return  (isAuth() && (JSON.parse(localStorage.getItem("user"))._id === this.props.classified.userid || JSON.parse(localStorage.getItem("user")).role === "Admin")
     ) ?
@@ -70,7 +66,7 @@ export default class Classified extends Component {
     >
       <i className="far fa-edit" data-toggle="tooltip" data-placement="top" title="Edit"></i>
     </Link>{" | "}<a
-      href={this.getHref()}
+      href="/profile/#"
       onClick={() => {
         this.props.deleteClassified(this.props.classified._id);
       }}
