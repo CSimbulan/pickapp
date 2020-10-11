@@ -66,7 +66,7 @@ export default class Classified extends Component {
     >
       <i className="far fa-edit" data-toggle="tooltip" data-placement="top" title="Edit"></i>
     </Link>{" | "}<a
-      href="/#"
+      href="/profile/#"
       onClick={() => {
         this.props.deleteClassified(this.props.classified._id);
       }}
