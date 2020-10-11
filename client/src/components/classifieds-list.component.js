@@ -206,6 +206,10 @@ export default class ClassifiedsList extends Component {
                 <option value="Ice Hockey">Ice Hockey</option>
                 <option value="Ball Hockey">Ball Hockey</option>
                 <option value="Tennis">Tennis</option>
+                <option value="Baseball">Baseball</option>
+                <option value="Boxing">Boxing</option>
+                <option value="Skateboarding">Skateboarding</option>
+                <option value="Bowling">Bowling</option>
               </select>
             </div>
             <div className="header-sort">

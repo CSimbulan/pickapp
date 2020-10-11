@@ -248,6 +248,18 @@ export default class CreateClassified extends Component {
               <option key="ball_hockey" value="Ball Hockey">
                 Ball Hockey
               </option>
+              <option key="baseball" value="Baseball">
+                Baseball
+              </option>
+              <option key="boxing" value="Boxing">
+                Boxing
+              </option>
+              <option key="skateboarding" value="Skateboarding">
+                Skateboarding
+              </option>
+              <option key="bowling" value="Bowling">
+                Bowling
+              </option>
             </select>
           </div>
           <div className="form-group">
