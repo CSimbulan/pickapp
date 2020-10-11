@@ -1,6 +1,13 @@
+/*
+This file contains the updated user model including functions for authentication.
+*/
 const mongoose = require("mongoose");
 const crypto = require("crypto");
-// user schema
+
+
+/*
+ User schema, has an email, name, hashed password, role, and a reset password link.
+*/
 const user2Schema = new mongoose.Schema(
   {
     email: {
@@ -34,7 +41,9 @@ const user2Schema = new mongoose.Schema(
   }
 );
 
-// virtual
+/*
+Create a virtual password and encrypt it.
+*/
 user2Schema
   .virtual("password")
   .set(function (password) {
@@ -46,7 +55,9 @@ user2Schema
     return this._password;
   });
 
-// methods
+/*
+Method for encrpyting the password and checking if the encrypted password matches the hashed password.
+*/
 user2Schema.methods = {
   authenticate: function (plainText) {
     return this.encryptPassword(plainText) === this.hashed_password;

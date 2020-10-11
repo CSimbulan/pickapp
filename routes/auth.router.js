@@ -1,3 +1,6 @@
+/*
+Api routes for user.
+*/
 const router = require("express").Router();
 
 const {
@@ -7,8 +10,9 @@ const {
   resetPasswordValidator,
 } = require("../helpers/valid");
 
-// Load Controllers
-
+/*
+Load and use controllers.
+*/
 const {
   registerController,
   activationController,
@@ -29,7 +33,6 @@ router.post("/register", validRegister, registerController);
 router.post("/login", validLogin, loginController);
 router.post("/activate", activationController);
 
-// forgot reset password
 router.put(
   "/forgotpassword",
   forgotPasswordValidator,

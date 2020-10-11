@@ -1,12 +1,22 @@
+/*
+Api routes for classifieds.
+*/
+
 const router = require("express").Router();
 let Classified = require("../models/classified.model");
 
+/*
+Normal get request, return all classifieds.
+*/
 router.route("/").get((req, res) => {
   Classified.find()
     .then((classifieds) => res.json(classifieds))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+/*
+Get request with queries. Used for filtering and sorting.
+*/
 router.route("/query").get((req, res) => {
   var filter = {};
   if (req.query.sport) {
@@ -40,6 +50,9 @@ router.route("/query").get((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+/*
+Post request for adding a new classified.
+*/
 router.route("/add").post((req, res) => {
   const username = req.body.username;
   const userid = req.body.userid;
@@ -65,18 +78,27 @@ router.route("/add").post((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+/*
+Get request for a specific classified given an ID.
+*/
 router.route("/:id").get((req, res) => {
   Classified.findById(req.params.id)
     .then((classified) => res.json(classified))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+/*
+Delete a specific classified given an ID.
+*/
 router.route("/:id").delete((req, res) => {
   Classified.findByIdAndDelete(req.params.id)
     .then(() => res.json("Classified deleted."))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+/*
+Post request for updating a specific classified given an ID.
+*/
 router.route("/update/:id").post((req, res) => {
   Classified.findById(req.params.id)
     .then((classified) => {

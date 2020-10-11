@@ -1,3 +1,7 @@
+/*
+Old user schema, will remove eventually.
+*/
+
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;

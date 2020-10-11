@@ -1,9 +1,8 @@
 "use strict";
 
 /*
-    Get unique error field name
+Create error message for signing up with a username or email that is already used.
 */
-
 const uniqueMessage = (error) => {
   let output;
   try {
@@ -27,7 +26,6 @@ const uniqueMessage = (error) => {
 /*
 Get the error message from error object
 */
-
 exports.errorHandler = (error) => {
   let message = "";
   if (error.code) {

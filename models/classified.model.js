@@ -1,7 +1,13 @@
+/*
+This contains the classified schema.
+*/
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
+/*
+Classified/posting schema.
+*/
 const classifiedSchema = new Schema(
   {
     username: { type: String, required: true },

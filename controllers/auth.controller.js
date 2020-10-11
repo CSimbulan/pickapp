@@ -1,3 +1,7 @@
+/*
+Controllers for user authentication.
+*/
+
 const User2 = require("../models/auth.model");
 const expressJwt = require("express-jwt");
 const _ = require("lodash");
@@ -5,12 +9,16 @@ const { OAuth2Client } = require("google-auth-library");
 const fetch = require("node-fetch");
 const { validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
-// Custom error handler to get useful error from database
 const { errorHandler } = require("../helpers/dbErrorHandling");
 const mailgun = require("mailgun-js");
 const DOMAIN = "mg.mewtwo.sale";
 const mg = mailgun({ apiKey: process.env.MAILGUN_APIKEY, domain: DOMAIN });
 
+/*
+Register controller. Check if email is already registered.
+If not, sign a token using the given name, email and password.
+Send an email using mailgun api with activation link.
+*/
 exports.registerController = (req, res) => {
   const { name, email, password } = req.body;
   const errors = validationResult(req);
@@ -42,7 +50,7 @@ exports.registerController = (req, res) => {
         }
       );
       const emailData = {
-        from: "noreply@pickapp.com",
+        from: "noreply@pickapp.fit",
         to: email,
         subject: "Account Activation Link",
         html:
@@ -59,9 +67,12 @@ exports.registerController = (req, res) => {
     });
   }
 };
-//Test to see if post works
-//res.json({ success: true });
 
+/*
+Activation controller. Verify the token in the activation link.
+Decode the token and create a user with the email name and password.
+Save the user to the database.
+*/
 exports.activationController = (req, res) => {
   const { token } = req.body;
 
@@ -104,6 +115,11 @@ exports.activationController = (req, res) => {
   }
 };
 
+/*
+Login controller. Check if the fields are valid.
+Then check if a user exists with the email.
+If user exists, generate a token with the user id and log in.
+*/
 exports.loginController = (req, res) => {
   const { email, password } = req.body;
   const errors = validationResult(req);
@@ -154,6 +170,9 @@ exports.loginController = (req, res) => {
 };
 
 /*
+Admin middleware
+*/
+/*
 exports.requireSignin = expressJwt({
   secret: process.env.JWT_SECRET, // req.user._id
 });
@@ -180,6 +199,11 @@ exports.adminMiddleware = (req, res, next) => {
 };
 */
 
+/*
+Forget password controller. Check if user with given email exists.
+If user exists, sign a token with the user id and send an email with password reset link.
+Add the password reset link to the user's data.
+*/
 exports.forgotPasswordController = (req, res) => {
   const { email } = req.body;
   const errors = validationResult(req);
@@ -260,6 +284,10 @@ exports.forgotPasswordController = (req, res) => {
   }
 };
 
+/*
+Password reset controller. If the passwords are valid decode the token from the reset link.
+Find user in the database with the reset link, then update the password.
+*/
 exports.resetPasswordController = (req, res) => {
   const { resetPasswordLink, newPassword } = req.body;
 
@@ -315,15 +343,20 @@ exports.resetPasswordController = (req, res) => {
   }
 };
 
+/*
+Google login controller. Check if user exists with gmail used.
+If user exists, sign a token with the user id and login.
+If user doesn't exist, create a new one using the email and the gmail account name.
+Generate a password with the email and secret environment variable.
+*/
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT);
-// Google Login
+
 exports.googleController = (req, res) => {
   const { idToken } = req.body;
 
   client
     .verifyIdToken({ idToken, audience: process.env.GOOGLE_CLIENT })
     .then((response) => {
-      // console.log('GOOGLE LOGIN RESPONSE',response)
       const { email_verified, name, email } = response.payload;
       // Check if email is verified
       if (email_verified) {
@@ -370,6 +403,12 @@ exports.googleController = (req, res) => {
     });
 };
 
+/*
+Facebook login controller. Check if user exists with email linked to the facebook account used.
+If user exists, sign a token with the user id and login.
+If user doesn't exist, create a new one using the email and the facebook account name.
+Generate a password with the email and secret environment variable.
+*/
 exports.facebookController = (req, res) => {
   console.log("FACEBOOK LOGIN REQ BODY", req.body);
   const { userID, accessToken } = req.body;
@@ -381,7 +420,6 @@ exports.facebookController = (req, res) => {
       method: "GET",
     })
       .then((response) => response.json())
-      // .then(response => console.log(response))
       .then((response) => {
         const { email, name } = response;
         User2.findOne({ email }).exec((err, user) => {
