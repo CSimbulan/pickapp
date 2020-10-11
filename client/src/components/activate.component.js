@@ -20,7 +20,6 @@ const Activate = ({ match }) => {
       setFormData({ ...formData, name, token });
     }
 
-    console.log(token, name);
   }, [match.params]);
   const { name, token, show } = formData;
 

@@ -46,8 +46,6 @@ const ResetPassword = ({ match, history }) => {
             password1: "",
             password2: "",
           });
-          console.log("Asdasda");
-          console.log(err.repsonse);
           console.log(err.response.data.errors);
           toast.error(err.response.data.errors);
         });

@@ -192,8 +192,7 @@ export default class EditClassified extends Component {
   };
 
   checkUserIdMatch = () => {
-    console.log(this.props.userid);
-    console.log(JSON.parse(localStorage.getItem("user"))._id);
+
     return this.state.userid === JSON.parse(localStorage.getItem("user"))._id;
   };
 
