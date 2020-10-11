@@ -15,6 +15,7 @@ import Login from "./components/login.component";
 import ForgetPassword from "./components/forget-password.component";
 import ResetPassword from "./components/reset-password.component";
 import Profile from "./components/profile.component";
+require('dotenv').config();
 
 function App() {
   return (
