@@ -54,7 +54,7 @@ export default class Classified extends Component {
   };
 
   getHref = () => {
-    return (this.props.isProfile ? "/profile/#" : "/#");
+    return (this.props.isProfile ? "/profile" : "/#");
   }
 
   getActions = () => {
