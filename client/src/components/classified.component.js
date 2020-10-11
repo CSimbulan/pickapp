@@ -53,6 +53,10 @@ export default class Classified extends Component {
     return formatted_date;
   };
 
+  getHref = () => {
+    return (this.props.isProfile ? "javascript:void(0);" : "/#");
+  }
+
   getActions = () => {
     return  (isAuth() && (JSON.parse(localStorage.getItem("user"))._id === this.props.classified.userid || JSON.parse(localStorage.getItem("user")).role === "Admin")
     ) ?
