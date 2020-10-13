@@ -134,8 +134,8 @@ td {
 .profile-img {
   margin-right: 5px;
   float: left;
-  background: 50% 50% no-repeat; /* 50% 50% centers image in div */
-  background-size: auto 100%; /* Interchange this value depending on prefering width vs. height */
+  background: 50% 50% no-repeat;
+  background-size: auto 100%;
   width: 25px;
   height: 25px;
 }
@@ -144,8 +144,8 @@ td {
   margin-right: 5px;
   margin-top: -3px;
   float: left;
-  background: 50% 50% no-repeat; /* 50% 50% centers image in div */
-  background-size: auto 100%; /* Interchange this value depending on prefering width vs. height */
+  background: 50% 50% no-repeat;
+  background-size: auto 100%;
   width: 30px;
   height: 30px;
 }
@@ -154,8 +154,8 @@ td {
   margin-right: 15px;
   top: 10px;
   float: left;
-  background: 50% 50% no-repeat; /* 50% 50% centers image in div */
-  background-size: auto 100%; /* Interchange this value depending on prefering width vs. height */
+  background: 50% 50% no-repeat;
+  background-size: auto 100%;
   width: 48px;
   height: 48px;
   vertical-align: baseline;
