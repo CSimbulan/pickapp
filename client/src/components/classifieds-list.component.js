@@ -1,3 +1,6 @@
+/*
+Component for the list of all the classifieds.
+*/
 import React, { Component } from "react";
 import axios from "axios";
 import Classified from "./classified.component";
@@ -22,6 +25,9 @@ export default class ClassifiedsList extends Component {
     }
   }
 
+  /*
+  When the component mounts, send a get request to receive all classifieds sorted by date.
+  */
   componentDidMount() {
 
     axios
@@ -39,6 +45,9 @@ export default class ClassifiedsList extends Component {
       });
   }
 
+  /*
+  This function sends a delete request to delete a classified with a given id.
+  */
   deleteClassified = (id) => {
     axios
       .delete(`/classifieds/` + id)
@@ -51,7 +60,11 @@ export default class ClassifiedsList extends Component {
     });
   };
 
-  exerciseList() {
+  /*
+  This function creates the rows for the table containing the classifieds.
+  Maps each classified in the state to a row.
+  */
+  classifiedList() {
     this.state.classifieds.forEach((currentclassified) => {
       this[currentclassified._id] = React.createRef();
     });
@@ -74,12 +87,19 @@ export default class ClassifiedsList extends Component {
     });
   }
 
+  /*
+  Changes the position coordinates in the state to the classified selected from the list.
+  */
   findOnMap = (location, id) => {
     this.setState({mapPosition:location.mapPosition, currentScroll:id,      isOpen: true,
       currentId: id,
       })
   }
 
+  /*
+  Changes the state when an info box for a classified marker is open.
+  The state will track which classified and where on the map.
+  */
   handleToggleOpen = (id, coords) => {
     this.setState({
       isOpen: true,
@@ -88,12 +108,18 @@ export default class ClassifiedsList extends Component {
     });
   };
 
+  /*
+  Changes the state when an info box for a classified marker is closed.
+  */
   handleToggleClose = () => {
     this.setState({
       isOpen: false,
     });
   };
 
+  /*
+  This function will scroll the table down to a specific classified when its info box button is clicked.
+  */
   onMoreInfoClick = () => {
     this.setState({ currentScroll: this.state.currentId });
     this[this.state.currentId].current.scrollIntoView({
@@ -102,57 +128,76 @@ export default class ClassifiedsList extends Component {
     });
   };
 
+  /*
+  Returns the correct className for <tr> element based on whether it is to be highlighted or not.
+  */
   getRowClassName = (classified) => {
     return classified._id === this.state.currentScroll ? "highlighted-row" : "";
   };
 
+  /*
+  Compare function for if one date is earlier than another.
+  */
   sooner = (a, b) => {
     return a.startdate > b.startdate ? 1 : -1;
   };
 
+  /*
+  Compare function for if one date is later than another.
+  */
   later = (a, b) => {
     return a.startdate < b.startdate ? 1 : -1;
   };
 
+  /*
+  Compare function for if one sport starts with an earlier letter than another.
+  */
   sportaz = (a, b) => {
     return a.sport > b.sport ? 1 : -1;
   };
 
+  /*
+  Compare function for if one sport starts with later letter than another.
+  */
   sportza = (a, b) => {
     return a.sport < b.sport ? 1 : -1;
   };
 
+  /*
+  This function updates the state when the user changes how they want to sort the table of classifieds.
+  */
   onSortChange = (e) => {
     const sort = e.target.value;
     this.sortClassifieds(sort);
     this.setState({ sort: sort });
   };
 
+  /*
+  This function will sort the array of classifieds based on which option is selected.
+  */
   sortClassifieds = (sort) => {
     switch (sort) {
       case "sooner":
-        
         this.state.classifieds.sort(this.sooner);
         break;
       case "later":
-      
         this.state.classifieds.sort(this.later);
         break;
       case "sportaz":
-        
         this.state.classifieds.sort(this.sportaz);
         break;
       case "sportza":
-        
         this.state.classifieds.sort(this.sportza);
         break;
       default:
-        
         this.state.classifieds.sort(this.sooner);
         break;
     }
   };
 
+  /*
+  When the filter option is changed, send a get request with a query containing the options selected.
+  */
   onFilterChange = (e) => {
     const filter = e.target.value;
     const sort = this.state.sort;
@@ -235,7 +280,7 @@ export default class ClassifiedsList extends Component {
                 <th>Actions</th>
               </tr>
             </thead>
-            <tbody>{this.exerciseList()}</tbody>
+            <tbody>{this.classifiedList()}</tbody>
           </table>
         </div>
       </div>

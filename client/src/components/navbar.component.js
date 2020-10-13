@@ -1,8 +1,15 @@
+/*
+Navigation bar component appearing at the top of the site.
+*/
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import cookie from "js-cookie";
 
 export default class Navbar extends Component {
+
+  /*
+  Remove cookie and user data from local storage.
+  */
   logOut = () => {
     cookie.remove("token", {
       expires: 1,
@@ -10,6 +17,9 @@ export default class Navbar extends Component {
     localStorage.removeItem("user");
   };
 
+  /*
+  Return links to login and register if there is no user logged in.
+  */
   loginRegLink = () => {
     return (
       <ul className="navbar-nav">
@@ -53,6 +63,9 @@ export default class Navbar extends Component {
     );
   };
 
+  /*
+  Return links to profile page and logout if a user is logged in.
+  */
   userLink = () => {
     return (
       <ul className="navbar-nav">

@@ -1,3 +1,6 @@
+/*
+Component for account activation.
+*/
 import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
@@ -12,6 +15,9 @@ const Activate = ({ match }) => {
     show: true,
   });
 
+  /*
+  Decode the token.
+  */
   useEffect(() => {
     let token = match.params.token;
     let { name } = jwt.decode(token);
@@ -23,6 +29,9 @@ const Activate = ({ match }) => {
   }, [match.params]);
   const { name, token, show } = formData;
 
+  /*
+  Send post request with token to activate the account.
+  */
   const handleSubmit = (e) => {
     e.preventDefault();
 

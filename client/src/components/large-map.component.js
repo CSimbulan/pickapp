@@ -1,3 +1,6 @@
+/*
+Large map component for home page.
+*/
 import React from "react";
 import {
   withGoogleMap,
@@ -10,10 +13,19 @@ import Geocode from "react-geocode";
 import "../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+/*
+Set api key for geocode.
+*/
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_KEY);
 Geocode.enableDebug();
 
 class LargeMap extends React.Component {
+
+  /*
+  Map all classifieds to a marker to appear on the google map.
+  The isOpen boolean is a prop passed down from the state of the classified-list component.
+  If isOpen is true and the classified id passed down with it matches a specific classified, show the info window.
+  */
   getMarkers = () => {
     return this.props.classifieds.map((currentclassified) => {
       return (
@@ -53,13 +65,18 @@ class LargeMap extends React.Component {
     });
   };
 
+  /*
+  Get the path to the icon for a classified depending on the classified's sport.
+  */
   getMarkerIcon = (sport) => {
     const s = sport.split(" ").join("_").toLowerCase();
     return process.env.PUBLIC_URL + "/icons/" + s + ".png";
   };
 
+  /*
+  Render the google map.
+  */
   AsyncMap = withScriptjs(
-
     withGoogleMap((props) => (
       <GoogleMap
         google={this.props.google}

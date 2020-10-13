@@ -1,3 +1,6 @@
+/*
+Component for old method of adding users.
+*/
 import React, { Component } from "react";
 import axios from "axios";
 
@@ -10,10 +13,17 @@ export default class CreateUser extends Component {
     };
   }
 
+  /*
+  Change the state whenever the username field changes.
+  */
   onChangeUsername = e => {
     this.setState({ username: e.target.value });
   };
 
+
+  /*
+  Send post request to create a new user with the given username field.
+  */
   onSubmit = e => {
     e.preventDefault();
 

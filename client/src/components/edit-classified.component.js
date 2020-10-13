@@ -1,3 +1,6 @@
+/*
+Component for editing a classified.
+*/
 import React, { Component } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
@@ -34,6 +37,9 @@ export default class EditClassified extends Component {
     };
   }
 
+  /*
+  When teh component mounts, send a get request to get the classified matching the id given.
+  */
   componentDidMount() {
     axios
       .get(`/classifieds/` + this.props.match.params.id)
@@ -52,31 +58,46 @@ export default class EditClassified extends Component {
         console.log(error);
       });
   }
-
-  getEmail = () => {
-    return isAuth() ? JSON.parse(localStorage.getItem("user")).email : "";
-  };
-
+  
+  /*
+  Update the state when the sport field is changed.
+  */
   onChangeSport = (e) => {
     this.setState({ sport: e.target.value });
   };
 
+  /*
+  Update the state when the description field is changed.
+  */
   onChangeDescription = (e) => {
     this.setState({ description: e.target.value });
   };
 
+  /*
+  Update the state when the start date is changed.
+  */
   onChangeStartDate = (date) => {
     this.setState({ startdate: date });
   };
 
+  /*
+  Update the state when the end date is changed.
+  */
   onChangeEndDate = (date) => {
     this.setState({ enddate: date });
   };
 
+  /*
+  Update the state when the location is changed.
+  */
   onChangeLocation = (e) => {
     this.setState({ location: e.target.value });
   };
 
+  /*
+  Create a new classified object with the values in the state.
+  Send a post request with the classified object.
+  */
   onSubmit = (e) => {
     e.preventDefault();
     if (this.state.enddate >= this.state.startdate) {
@@ -105,13 +126,11 @@ export default class EditClassified extends Component {
     }
   };
 
-  /**
-   * When the marker is dragged you get the lat and long using the functions available from event object.
-   * Use geocode to get the address, city, area and state from the lat and lng positions.
-   * And then set those values in the state.
-   *
-   * @param event
-   */
+  /*
+  When the marker is dragged you get the lat and long using the functions available from event object.
+  Use geocode to get the address, city, area and state from the lat and lng positions.
+  And then set those values in the state.
+  */
   onMarkerDragEnd = (event) => {
     let newLat = event.latLng.lat(),
       newLng = event.latLng.lng();
@@ -140,16 +159,14 @@ export default class EditClassified extends Component {
     );
   };
 
-  /**
-   * When the user types an address in the search box
-   * @param place
-   */
+  /*
+  When the user types an address in the search box get the location and set it in the state.
+  */
   onPlaceSelected = (place) => {
     const address = place.formatted_address,
       latValue = place.geometry.location.lat(),
       lngValue = place.geometry.location.lng();
 
-    // Set these values in the state.
     this.setState({
       locationInfo: {
         address: address ? address : "",
@@ -165,6 +182,9 @@ export default class EditClassified extends Component {
     });
   };
 
+  /*
+  When the user clicks someone on the map, get the location and set it in the state.
+  */
   onMapClicked = (e) => {
     let newLat = e.latLng.lat(),
       newLng = e.latLng.lng();
@@ -187,15 +207,16 @@ export default class EditClassified extends Component {
     });
   };
 
+  /*
+  Change the border of the end date selector to red if the end date is invalid.
+  */
   getEndDateClass = () => {
     return !this.state.badenddate ? "datepicker" : "baddatepicker";
   };
 
-  checkUserIdMatch = () => {
-
-    return this.state.userid === JSON.parse(localStorage.getItem("user"))._id;
-  };
-
+  /*
+  Check if the user id in locoal storage matches the user id belonging to the classified, or if the user logged in is an admin.
+  */
   getTest = () => {
     return this.props.location.state
       ? (this.props.location.state.userid ===
@@ -203,6 +224,9 @@ export default class EditClassified extends Component {
       : (this.state.userid === JSON.parse(localStorage.getItem("user"))._id  || JSON.parse(localStorage.getItem("user")).role === "Admin");
   };
 
+  /*
+  If the user has permission to edit the classifed, render the edit page.
+  */
   renderReal = () => {
     return (
       <div>

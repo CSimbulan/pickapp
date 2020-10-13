@@ -1,3 +1,6 @@
+/*
+Component for the forgot password page.
+*/
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
@@ -7,10 +10,19 @@ const ForgetPassword = ({ history }) => {
     email: "",
     textChange: "Submit",
   });
+
   const { email } = formData;
+
+  /*
+  Change the form data depending on the text given.
+  */
   const handleChange = (text) => (e) => {
     setFormData({ ...formData, [text]: e.target.value });
   };
+
+  /*
+  Send a put request with the email entered.
+  */
   const handleSubmit = (e) => {
     e.preventDefault();
     if (email) {
@@ -34,6 +46,7 @@ const ForgetPassword = ({ history }) => {
       toast.error("Please fill all fields.");
     }
   };
+
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
       <ToastContainer />

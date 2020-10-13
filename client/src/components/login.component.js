@@ -1,3 +1,6 @@
+/*
+Component for log in page.
+*/
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
@@ -12,11 +15,20 @@ const Login = ({ history }) => {
     password1: "",
     textChange: "Sign In",
   });
+
   const { email, password1 } = formData;
+
+  /*
+  Change the form data when the field changes.
+  */
   const handleChange = (text) => (e) => {
     setFormData({ ...formData, [text]: e.target.value });
   };
 
+  
+  /*
+  Send post request for google login.
+  */
   const sendGoogleToken = (tokenId) => {
     axios
       .post(`/api/googlelogin`, {
@@ -31,6 +43,10 @@ const Login = ({ history }) => {
       });
   };
 
+  /*
+  Set cookie and local storage with authenticate function.
+  Redirect to home page.
+  */
   const informParent = (response) => {
     authenticate(response, () => {
       isAuth() && isAuth().role === "admin"
@@ -40,6 +56,9 @@ const Login = ({ history }) => {
     });
   };
 
+  /*
+  Send post request for facebook login.
+  */
   const sendFacebookToken = (userID, accessToken) => {
     axios
       .post(`/api/facebooklogin`, {
@@ -54,16 +73,27 @@ const Login = ({ history }) => {
         console.log("GOOGLE SIGNIN ERROR", error.response);
       });
   };
+
+  /*
+  Get response from google login.
+  */
   const responseGoogle = (response) => {
     console.log(response);
     sendGoogleToken(response.tokenId);
   };
 
+  /*
+  Get response from facebook login.
+  */
   const responseFacebook = (response) => {
     console.log(response);
     sendFacebookToken(response.userID, response.accessToken);
   };
 
+  /*
+  If all fields are filled, send a post request to try to login.
+  If successful, redirect to home page and reload the page.
+  */
   const handleSubmit = (e) => {
     e.preventDefault();
     if (email && password1) {
@@ -83,12 +113,10 @@ const Login = ({ history }) => {
             });
             toast.success(`Login Successful!`);
 
-            // If authentication is successfull, redirect to /private for normal user, /admin for admin
             isAuth() && isAuth().role === "admin"
-              ? history.push("/admin")
+              ? history.push("/")
               : history.push({ pathname: "/", redirectfrom: "login" });
             window.location.reload();
-            //localStorage.setItem("first", true);
           });
         })
         .catch((err) => {

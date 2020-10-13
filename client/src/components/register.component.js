@@ -1,3 +1,6 @@
+/*
+Component for register page.
+*/
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,6 +18,10 @@ const Register = ({ history }) => {
     password2: "",
     textChange: "Sign Up",
   });
+
+  /*
+  Send post request for google login.
+  */
   const sendGoogleToken = (tokenId) => {
     axios
       .post(`/api/googlelogin`, {
@@ -29,6 +36,10 @@ const Register = ({ history }) => {
       });
   };
 
+  /*
+  Set cookie and local storage with authenticate function.
+  Redirect to home page.
+  */
   const informParent = (response) => {
     authenticate(response, () => {
       isAuth() && isAuth().role === "admin"
@@ -38,6 +49,9 @@ const Register = ({ history }) => {
     });
   };
 
+  /*
+  Send post request for facebook login.
+  */
   const sendFacebookToken = (userID, accessToken) => {
     axios
       .post(`/api/facebooklogin`, {
@@ -53,20 +67,34 @@ const Register = ({ history }) => {
       });
   };
 
+  /*
+  Get response from google login.
+  */
   const responseGoogle = (response) => {
     console.log(response);
     sendGoogleToken(response.tokenId);
   };
 
+  /*
+  Get response from facebook login.
+  */
   const responseFacebook = (response) => {
     console.log(response);
     sendFacebookToken(response.userID, response.accessToken);
   };
 
   const { name, email, password1, password2 } = formData;
+
+  /*
+  Change the form data when the field changes.
+  */
   const handleChange = (text) => (e) => {
     setFormData({ ...formData, [text]: e.target.value });
   };
+  
+  /*
+  If all fields are filled, and the two passwords match, send a post request with the regiser information.
+  */
   const handleSubmit = (e) => {
     e.preventDefault();
     if (name && email && password1) {

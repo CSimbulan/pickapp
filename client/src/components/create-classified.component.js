@@ -1,3 +1,6 @@
+/*
+Component for creating a classified.
+*/
 import React, { Component } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -32,6 +35,10 @@ export default class CreateClassified extends Component {
     };
   }
 
+  /*
+  When the component mounts, find the username and user id with same email as the logged in the user.
+  Set the state with the default location.
+  */
   componentDidMount() {
     axios
       .get(`/api/users/query`, {
@@ -48,56 +55,54 @@ export default class CreateClassified extends Component {
       .catch(function (error) {
         console.log(error);
       });
-    Geocode.fromLatLng(
-      this.state.locationInfo.mapPosition.lat,
-      this.state.locationInfo.mapPosition.lng
-    ).then(
-      (response) => {
-        const address = response.results[0].formatted_address;
-
-        this.setState({
-          locationInfo: {
-            address: address ? address : "",
-
-            mapPosition: {
-              lat: 43.6548, lng: -79.3882 
-            },
-            markerPosition: {
-              lat: 43.6548, lng: -79.3882 
-            },
-          },
-        });
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
   }
 
+  /*
+  Get the logged in user's email from the local storage.
+  */
   getEmail = () => {
     return isAuth() ? JSON.parse(localStorage.getItem("user")).email : "";
   };
 
+  /*
+  Update the state when the sport field is changed.
+  */
   onChangeSport = (e) => {
     this.setState({ sport: e.target.value });
   };
 
+  /*
+  Update the state when the description field is changed.
+  */
   onChangeDescription = (e) => {
     this.setState({ description: e.target.value });
   };
 
+  /*
+  Update the state when the start date is changed.
+  */
   onChangeStartDate = (date) => {
     this.setState({ startdate: date });
   };
 
+  /*
+  Update the state when the end date is changed.
+  */
   onChangeEndDate = (date) => {
     this.setState({ enddate: date });
   };
 
+  /*
+  Update the state when the location is changed.
+  */
   onChangeLocation = (e) => {
     this.setState({ location: e.target.value });
   };
 
+  /*
+  Create a new classified object with the values in the state.
+  Send a post request with the classified object.
+  */
   onSubmit = (e) => {
     e.preventDefault();
     if (this.state.enddate >= this.state.startdate) {
@@ -122,13 +127,11 @@ export default class CreateClassified extends Component {
     }
   };
 
-  /**
-   * When the marker is dragged you get the lat and long using the functions available from event object.
-   * Use geocode to get the address, city, area and state from the lat and lng positions.
-   * And then set those values in the state.
-   *
-   * @param event
-   */
+  /*
+  When the marker is dragged you get the lat and long using the functions available from event object.
+  Use geocode to get the address, city, area and state from the lat and lng positions.
+  And then set those values in the state.
+  */
   onMarkerDragEnd = (event) => {
     let newLat = event.latLng.lat(),
       newLng = event.latLng.lng();
@@ -157,16 +160,14 @@ export default class CreateClassified extends Component {
     );
   };
 
-  /**
-   * When the user types an address in the search box
-   * @param place
-   */
+  /*
+  When the user types an address in the search box get the location and set it in the state.
+  */
   onPlaceSelected = (place) => {
     const address = place.formatted_address,
       latValue = place.geometry.location.lat(),
       lngValue = place.geometry.location.lng();
 
-    // Set these values in the state.
     this.setState({
       locationInfo: {
         address: address ? address : "",
@@ -182,6 +183,9 @@ export default class CreateClassified extends Component {
     });
   };
 
+  /*
+  When the user clicks someone on the map, get the location and set it in the state.
+  */
   onMapClicked = (e) => {
     let newLat = e.latLng.lat(),
       newLng = e.latLng.lng();
@@ -204,6 +208,9 @@ export default class CreateClassified extends Component {
     });
   };
 
+  /*
+  Change the border of the end date selector to red if the end date is invalid.
+  */
   getEndDateClass = () => {
     return !this.state.badenddate ? "datepicker" : "baddatepicker";
   };

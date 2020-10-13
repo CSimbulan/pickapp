@@ -1,3 +1,6 @@
+/*
+Map component used for creating or editing a classified.
+*/
 import React from "react";
 import {
   withGoogleMap,
@@ -9,6 +12,9 @@ import {
 import Geocode from "react-geocode";
 import Autocomplete from "react-google-autocomplete";
 
+/*
+Set api key for geocode.
+*/
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_KEY);
 Geocode.enableDebug();
 
@@ -18,6 +24,9 @@ class Map extends React.Component {
     this.state = {};
   }
 
+  /*
+  Render the google map.
+  */
   AsyncMap = withScriptjs(
     withGoogleMap((props) => (
       <GoogleMap
@@ -33,7 +42,6 @@ class Map extends React.Component {
         }}
         onClick={this.props.onMapClicked}
       >
-        {/*Marker*/}
         <Marker
           google={this.props.google}
           name={"Dolores park"}
@@ -44,8 +52,6 @@ class Map extends React.Component {
             lng: this.props.markerPosition.lng,
           }}
         />
-
-        {/* InfoWindow on top of marker */}
         <InfoWindow
           position={{
             lat: this.props.markerPosition.lat + 0.0018,
@@ -56,7 +62,6 @@ class Map extends React.Component {
             <span style={{ padding: 0, margin: 0 }}>{this.props.address}</span>
           </div>
         </InfoWindow>
-        {/* For Auto complete Search Box */}
         <Autocomplete
           style={{
             width: "100%",

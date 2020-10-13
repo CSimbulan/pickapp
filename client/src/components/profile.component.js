@@ -1,3 +1,6 @@
+/*
+Component for profile page.
+*/
 import React, { Component } from "react";
 import axios from "axios";
 import Classified from "./classified.component";
@@ -17,6 +20,9 @@ export default class Profile extends Component {
     };
   }
 
+  /*
+  When component mounts, query databse for all classifieds tied to the logged in user's user id.
+  */
   componentDidMount() {
     axios
       .get(`/classifieds/query`, {
@@ -32,22 +38,37 @@ export default class Profile extends Component {
       });
   }
 
+  /*
+  Get the user id from local storage.
+  */
   getUserId = () => {
     return isAuth() ? JSON.parse(localStorage.getItem("user"))._id : "";
   };
 
+  /*
+  Get the username from local storage.
+  */
   getName = () => {
     return isAuth() ? JSON.parse(localStorage.getItem("user")).name : "";
   };
 
+  /*
+  Get the user's email from local storage.
+  */
   getEmail = () => {
     return isAuth() ? JSON.parse(localStorage.getItem("user")).email : "";
   };
 
+  /*
+  Get the user's accounr type from local storage.
+  */
   getAccountType = () => {
     return isAuth() ? JSON.parse(localStorage.getItem("user")).role : "";
   };
 
+  /*
+  Send a delete request for a specific classified.
+  */
   deleteClassified = (id) => {
     axios
       .delete(`/classifieds/` + id)
@@ -60,7 +81,12 @@ export default class Profile extends Component {
     });
   };
 
-  exerciseList() {
+
+  /*
+  This function creates the rows for the table containing the classifieds.
+  Maps each classified in the state to a row.
+  */
+  classifiedList() {
     this.state.classifieds.forEach((currentclassified) => {
       this[currentclassified._id] = React.createRef();
     });
@@ -123,7 +149,7 @@ export default class Profile extends Component {
                 <th>Actions</th>
               </tr>
             </thead>
-            <tbody>{this.exerciseList()}</tbody>
+            <tbody>{this.classifiedList()}</tbody>
           </table>
         </div>
       </div>

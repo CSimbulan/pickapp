@@ -1,8 +1,15 @@
+/*
+Component for individual classifieds.
+*/
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { isAuth } from "../helpers/auth";
 
 export default class Classified extends Component {
+
+  /*
+  This function formats dates from a Date object to "Month Day, Year TT:TT".
+  */
   formatDate = (rawDate) => {
     const months = [
       "January",
@@ -19,6 +26,10 @@ export default class Classified extends Component {
       "December",
     ];
 
+    /*
+    Add a zero to the time if it's only a single digit.
+    Example: 9:10 becomes 09:10.
+    */
     function appendLeadingZeroes(n) {
       if (n <= 9) {
         return "0" + n;
@@ -26,6 +37,9 @@ export default class Classified extends Component {
       return n;
     }
 
+    /*
+    Covert 24 hour time to 12 hour time and add AM or PM.
+    */
     function formatHour(n) {
       let c = n >= 12 ? "PM" : "AM";
       let x = n % 12;
@@ -38,6 +52,9 @@ export default class Classified extends Component {
     let d = new Date(rawDate);
     let hour = formatHour(d.getHours());
 
+    /*
+    Create string for formatted date.
+    */
     let formatted_date =
       months[d.getMonth()] +
       " " +
@@ -53,10 +70,19 @@ export default class Classified extends Component {
     return formatted_date;
   };
 
+  /*
+  This function returns the destination for the "delete".
+  The destination depends whether the user is on the home page or the profile page.
+  */
   getHref = () => {
     return (this.props.isProfile ? "javascript:void(0);" : "/#");
   }
 
+  /*
+  Returns the possible actions for each classified.
+  Depends on whether the user is on the home page or the profile page.
+  Also depends on whether the classified is created by the user or a different one.
+  */
   getActions = () => {
     return  (isAuth() && (JSON.parse(localStorage.getItem("user"))._id === this.props.classified.userid || JSON.parse(localStorage.getItem("user")).role === "Admin")
     ) ?

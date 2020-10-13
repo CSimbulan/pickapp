@@ -1,3 +1,6 @@
+/*
+Component for resetting password.
+*/
 import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
@@ -11,6 +14,9 @@ const ResetPassword = ({ match, history }) => {
   });
   const { password1, password2, textChange, token } = formData;
 
+  /*
+  Get the token and set into form data.
+  */
   useEffect(() => {
     let token = match.params.token;
     if (token) {
@@ -18,10 +24,16 @@ const ResetPassword = ({ match, history }) => {
     }
   }, []);
 
+  /*
+  Change the form data when the field changes.
+  */
   const handleChange = (text) => (e) => {
     setFormData({ ...formData, [text]: e.target.value });
   };
 
+  /*
+  If both password fields are filled and they both match, send a put request.
+  */
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password1 === password2 && password1 && password2) {
