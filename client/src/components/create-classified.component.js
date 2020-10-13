@@ -76,7 +76,7 @@ export default class CreateClassified extends Component {
         });
       },
       (error) => {
-        
+        console.error(error);
       }
     );
   }
