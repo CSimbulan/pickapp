@@ -37,7 +37,7 @@ export default class CreateClassified extends Component {
 
   /*
   When the component mounts, find the username and user id with same email as the logged in the user.
-  Set the state with the default location.
+  Get the address with the default coordinates and set it to the state.
   */
   componentDidMount() {
     axios
@@ -55,6 +55,22 @@ export default class CreateClassified extends Component {
       .catch(function (error) {
         console.log(error);
       });
+    Geocode.fromLatLng(
+      this.state.locationInfo.mapPosition.lat,
+      this.state.locationInfo.mapPosition.lng
+    ).then(
+      (response) => {
+        const address = response.results[0].formatted_address;
+
+        this.setState({
+          locationInfo: {
+            address: address ? address : "",
+          },
+        });
+      },
+      (error) => {
+      }
+    );
   }
 
   /*
