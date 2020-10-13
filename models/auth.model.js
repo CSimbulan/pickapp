@@ -25,6 +25,7 @@ const user2Schema = new mongoose.Schema(
     hashed_password: {
       type: String,
       required: true,
+      select: false,
     },
     salt: String,
     role: {
