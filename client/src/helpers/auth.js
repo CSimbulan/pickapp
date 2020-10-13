@@ -1,15 +1,22 @@
+/*
+Help file to manage cookies and local storage.
+*/
 import cookie from "js-cookie";
 
-// Set in Cookie
+/*
+Set cookie.
+*/
 export const setCookie = (key, value) => {
   if (window !== "undefiend") {
     cookie.set(key, value, {
-      // 1 Day
       expires: 1,
     });
   }
 };
-// remove from cookie
+
+/*
+Remove cookie.
+*/
 export const removeCookie = (key) => {
   if (window !== "undefined") {
     cookie.remove(key, {
@@ -18,37 +25,46 @@ export const removeCookie = (key) => {
   }
 };
 
-// Get from cookie such as stored token
-// Will be useful when we need to make request to server with token
+/*
+Get cookie.
+*/
 export const getCookie = (key) => {
   if (window !== "undefined") {
     return cookie.get(key);
   }
 };
 
-// Set in localstorage
+/*
+Set item in local storage.
+*/
 export const setLocalStorage = (key, value) => {
   if (window !== "undefined") {
     localStorage.setItem(key, JSON.stringify(value));
   }
 };
 
-// Remove from localstorage
+/*
+Remove item from local storage.
+*/
 export const removeLocalStorage = (key) => {
   if (window !== "undefined") {
     localStorage.removeItem(key);
   }
 };
 
-// Auth enticate user by passing data to cookie and localstorage during signin
+/*
+Add cookie and user data to local storage for authentication purposes.
+*/
 export const authenticate = (response, next) => {
-  console.log("AUTHENTICATE HELPER ON SIGNIN RESPONSE", response);
+  //console.log("AUTHENTICATE HELPER ON SIGNIN RESPONSE", response);
   setCookie("token", response.data.token);
   setLocalStorage("user", response.data.user);
   next();
 };
 
-// Access user info from localstorage
+/*
+Check if user information exists in local storage.
+*/
 export const isAuth = () => {
   if (window !== "undefined") {
     const cookieChecked = getCookie("token");
@@ -62,14 +78,20 @@ export const isAuth = () => {
   }
 };
 
+/*
+Remove cookie and user information from local storage.
+*/
 export const signout = (next) => {
   removeCookie("token");
   removeLocalStorage("user");
   next();
 };
 
+/*
+Update user information in local storage.
+*/
 export const updateUser = (response, next) => {
-  console.log("UPDATE USER IN LOCALSTORAGE HELPERS", response);
+  //console.log("UPDATE USER IN LOCALSTORAGE HELPERS", response);
   if (typeof window !== "undefined") {
     let auth = JSON.parse(localStorage.getItem("user"));
     auth = response.data;
