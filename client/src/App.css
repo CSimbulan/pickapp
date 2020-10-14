@@ -215,6 +215,10 @@ td {
   color: lightblue;
 }
 
+.brd-btm-white {
+  border-bottom: 15px solid white;
+}
+
 .svg-container {
   margin-right: 10px;
   padding: 10px;

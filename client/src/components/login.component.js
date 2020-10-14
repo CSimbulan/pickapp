@@ -262,7 +262,7 @@ const Login = ({ history }) => {
             </div>
           </div>
         </div>
-        <div className="flex-1 bg-gray text-center hidden lg:flex">
+        <div className="flex-1 bg-gray text-center hidden lg:flex brd-btm-white">
           <div
             className="w-full bg-cover bg-center bg-no-repeat"
             style={{
