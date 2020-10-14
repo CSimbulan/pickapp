@@ -204,7 +204,15 @@ td {
 }
 
 .text-black a {
-  color: white;
+  color: blue;
+}
+
+.gold-link a {
+  color: gold;
+}
+
+.lightblue-link a {
+  color: lightblue;
 }
 
 .svg-container {
