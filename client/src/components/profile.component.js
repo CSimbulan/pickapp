@@ -109,7 +109,7 @@ export default class Profile extends Component {
     return (
       <div>
         {!isAuth() ? <Redirect to="/login" /> : null}
-        <h1>
+        <h1 className="text-2xl xl:text-4xl font-extrabold">
           <svg
             viewBox="0 0 16 16"
             className="bi bi-person-circle profile-page-svg"
@@ -126,16 +126,16 @@ export default class Profile extends Component {
           Profile Page
         </h1>
         <br></br>
-        <h2>Name:</h2>
+        <h2 className="text-2xl xl:text-3xl font-bold">Name:</h2>
         <h4>{this.getName()}</h4>
         <br></br>
-        <h2>Email:</h2>
+        <h2 className="text-2xl xl:text-3xl font-bold">Email:</h2>
         <h4>{this.getEmail()}</h4>
         <br></br>
-        <h2>Account Type:</h2>
+        <h2 className="text-2xl xl:text-3xl font-bold">Account Type:</h2>
         <h4>{this.getAccountType()}</h4>
         <br></br>
-        <h2>Your Posts:</h2>
+        <h2 className="text-2xl xl:text-3xl font-bold">Your Posts:</h2>
         <div className="classifieds-table">
           <table className="table">
             <thead className="thead-navy thead-fixed bg-nayv">
