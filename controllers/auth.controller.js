@@ -132,7 +132,7 @@ exports.loginController = (req, res) => {
     // check if user exist
     User2.findOne({
       email,
-    }).select('+hashed_password').exec((err, user) => {
+    }).select('+hashed_password +salt').exec((err, user) => {
       if (err || !user) {
         return res.status(400).json({
           errors: "User with that email does not exist. Please signup",
