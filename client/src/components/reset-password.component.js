@@ -130,9 +130,9 @@ const ResetPassword = ({ match, history }) => {
           >
             <div className="photo-creds text-black">
               <span>
-                Photo by <a href="https://www.pexels.com/@pixabay">Pixabay</a>{" "}
+                Photo by <a href="https://www.pexels.com/@pixabay" target="_blank" rel="noopener noreferrer">Pixabay</a>{" "}
                 on{" "}
-                <a href="https://www.pexels.com/photo/woman-holding-baseball-bat-159563/">
+                <a href="https://www.pexels.com/photo/woman-holding-baseball-bat-159563/" target="_blank" rel="noopener noreferrer">
                   Pexels
                 </a>
               </span>

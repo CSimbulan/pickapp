@@ -90,11 +90,11 @@ const ForgetPassword = ({ history }) => {
             <div className="photo-creds gold-link">
               <span>
                 Photo by{" "}
-                <a href="https://unsplash.com/@markusspiske?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
+                <a href="https://unsplash.com/@markusspiske?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener noreferrer">
                   Markus Spiske
                 </a>{" "}
                 on{" "}
-                <a href="https://unsplash.com/s/photos/soccer?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
+                <a href="https://unsplash.com/s/photos/soccer?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener noreferrer">
                   Unsplash
                 </a>
               </span>

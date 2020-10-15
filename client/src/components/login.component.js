@@ -274,8 +274,8 @@ const Login = ({ history }) => {
             <div className="photo-creds">
               <span>
                 Photo by{" "}
-                <a href="https://www.pexels.com/@wendywei">Wendy Wei</a> on{" "}
-                <a href="https://www.pexels.com/photo/women-s-white-v-neck-shirt-and-blue-miniskirt-2820810/">
+                <a href="https://www.pexels.com/@wendywei" target="_blank" rel="noopener noreferrer">Wendy Wei</a> on{" "}
+                <a href="https://www.pexels.com/photo/women-s-white-v-neck-shirt-and-blue-miniskirt-2820810/" target="_blank" rel="noopener noreferrer">
                   Pexels
                 </a>
               </span>

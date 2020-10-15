@@ -286,11 +286,11 @@ const Register = ({ history }) => {
             <div className="photo-creds text-black">
               <span>
                 Photo by{" "}
-                <a href="https://unsplash.com/@mlightbody?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
+                <a href="https://unsplash.com/@mlightbody?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener noreferrer">
                   Malcolm Lightbody
                 </a>{" "}
                 on{" "}
-                <a href="https://unsplash.com/s/photos/sports?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
+                <a href="https://unsplash.com/s/photos/sports?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener noreferrer">
                   Unsplash
                 </a>
               </span>

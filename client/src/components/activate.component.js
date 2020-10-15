@@ -113,9 +113,9 @@ const Activate = ({ match }) => {
           >
             <div className="photo-creds text-black">
               <span>
-                Photo by <a href="https://www.pexels.com/@pixabay">Pixabay</a>{" "}
+                Photo by <a href="https://www.pexels.com/@pixabay" target="_blank" rel="noopener noreferrer">Pixabay</a>{" "}
                 on{" "}
-                <a href="https://www.pexels.com/photo/action-adult-american-football-athletes-274520/">
+                <a href="https://www.pexels.com/photo/action-adult-american-football-athletes-274520/" target="_blank" rel="noopener noreferrer">
                   Pexels
                 </a>
               </span>
