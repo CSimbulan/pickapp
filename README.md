@@ -13,5 +13,3 @@ The profile page can be accessed by clicking on the user's username at the top r
 Users can register by email or with google or with facebook.
 
 Check it out at www.pickapp.fit or at www.pick-app-sports.herokuapp.com.
-
-Note: the facebook login does not work for the first link due to no SSL certificate.
