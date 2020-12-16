@@ -25,7 +25,7 @@ const Login = ({ history }) => {
     setFormData({ ...formData, [text]: e.target.value });
   };
 
-  
+
   /*
   Send post request for google login.
   */
@@ -232,6 +232,7 @@ const Login = ({ history }) => {
                   appId={`${process.env.REACT_APP_FACEBOOK_CLIENT}`}
                   autoLoad={false}
                   callback={responseFacebook}
+                  disableMobileRedirect={true}
                   render={(renderProps) => (
                     <button
                       onClick={renderProps.onClick}
@@ -266,9 +267,8 @@ const Login = ({ history }) => {
           <div
             className="w-full bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: `url(${
-                process.env.PUBLIC_URL + "/assets/tennis.jpg"
-              })`,
+              backgroundImage: `url(${process.env.PUBLIC_URL + "/assets/tennis.jpg"
+                })`,
             }}
           >
             <div className="photo-creds">
