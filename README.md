@@ -1,4 +1,19 @@
-## PickApp
+# PickApp <!-- omit in toc -->
+
+**_Table of Contents:_**
+
+- [Preview](#preview)
+- [About](#about)
+- [Tech Stack](#tech-stack)
+
+# Preview
+
+This project is currently live at https://www.pickapp.fit or at https://pick-app-sports.herokuapp.com.
+
+![Main](./screenshots/home.png)
+![Create](./screenshots/create.png)
+
+# About
 
 PickApp is a platform for athletes to connect with one another through pick up sports.
 
@@ -12,4 +27,12 @@ The profile page can be accessed by clicking on the user's username at the top r
 
 Users can register by email or with google or with facebook.
 
-Check it out at www.pickapp.fit or at https://pick-app-sports.herokuapp.com.
+# Tech Stack
+
+MERN (MongoDB, Express, React, Node)
+
+| Other Highlights |
+| :--------------: |
+|       JTW        |
+|   Google Maps    |
+|    Bootstrap     |
